@@ -1,0 +1,177 @@
+﻿@model AgriSystemCore.Controllers.ManagerController.EditViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string json = Newtonsoft.Json.JsonConvert.SerializeObject(Model.AllMenu);
+}
+
+<!-- Page-Title -->
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">帳號管理</h4>
+        <ol class="breadcrumb">
+            <li>
+                根目錄
+            </li>
+            <li>
+                權限管理
+            </li>
+            <li>
+                帳號管理
+            </li>
+            <li class="active">
+                編輯帳號
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            <h4 class="m-t-0 header-title"><b>編輯管理者帳號</b></h4>
+            <hr />
+            <form class="form-horizontal" role="form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtName" class="col-sm-3 control-label">帳號名稱</label>
+                            <div class="col-sm-9">
+                                <input id="txtName" type="text" class="form-control" placeholder="帳號名稱" value="@Model.Data.Name">
+                                <small>在確認帳號名稱沒有重覆後，才能成功新增並編輯權限</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPassword" class="col-sm-3 control-label">密碼</label>
+                            <div class="col-sm-9">
+                                <input id="txtPassword" type="password" class="form-control" placeholder="密碼" value="">
+                                <small>如不更改請空白</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">功能授權</label>
+                            <div class="col-sm-9" style="padding-top:7px;">
+                                <ul id="AuthPool" style="list-style-type: none;padding-left:5px;">
+                                    @foreach (var i in Model.AllMenu)
+                                    {
+                                        <li data-id="@i.Id" data-name="@i.Name" data-icon="@i.Icon" class="MainMenu">
+                                            @i.Name
+                                            <ul style="list-style-type: none;">
+                                                <li>
+                                                    <div style="margin-top: 3px; margin-bottom: 3px;">
+                                                        @foreach (var s in i.Child)
+                                                        {
+                                                            <div class="checkbox checkbox-primary">
+                                                                <input name="chkFolder" type="checkbox" data-Id="@s.Id" data-Name="@s.Name" data-Uri="@s.Uri" data-Role="@s.Role"  value="@s.Role" @(Html.Raw(Model.Data.Auth.Any(x => x.Child.Any(c => c.Uri == s.Uri)) ? "checked=\"checked\"" : "")) />
+                                                                <label for="checkbox2">
+                                                                    @s.Name
+                                                                </label>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+                <hr />
+                <div class="form-group m-b-0">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button id="btnSave" type="button" class="btn btn-default waves-effect waves-light">確定</button>
+                        <button id="btnCancel" type="button" class="btn btn-default waves-effect waves-light">取消</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section PageBottom{
+    <script>
+        var app = function () {
+
+            var allMenu = JSON.parse('@Html.Raw(json)');
+
+        return {
+            init:function(){
+                $('#btnSave').click(app.save);
+                $('#btnCancel').click(app.cancel);
+            },
+            save:function(){
+
+                layout.block();
+
+                var auth = new Array();
+
+                $('input[name="chkFolder"]:checkbox:checked').each(function (i, e) {
+
+                    var parentId = $(e).parents('.MainMenu').first().data().id;
+
+                    ////--確認根目錄是否存在
+                    var check = $.grep(auth, function (ge, gi) { 
+                        return ge.id == parentId;
+                    });
+
+                    if (check.length == 0) {
+
+                        var mainObj = $(e).parents('.MainMenu').first().data();
+                        mainObj.Child = new Array();
+
+                        mainObj.Child.push($(e).data());
+
+                        auth.push(mainObj);
+
+                        var a = 0;
+                    }
+                    else {
+                        check[0].Child.push($(e).data());
+                    }
+
+                });
+
+                var obj = {
+                    Id: '@Model.Data.Id',
+                    Name: $('#txtName').val(),
+                    Password: $('#txtPassword').val(),
+                    Auth: auth
+                };
+
+                var a = 0;
+
+                $.ajax({
+                    url:'@Url.Action("Manager", "Manager")',
+                    data:JSON.stringify(obj),
+                    type:'PUT',
+                    dataType:'json',
+                    contentType:'application/json',
+                    success:function(data){
+                        if(data.success == true){
+                            alert('成功！');
+                            window.location.href = '@Url.Action("Index", "Manager")';
+                        }
+                        else{
+                            alert('錯誤!(' + data.msg + ')');
+                            layout.unblock();
+                        }
+                    }
+                });
+
+            },
+            cancel:function(){
+                if(confirm('確定離開？')){
+                    window.location.href = '@Url.Action("Index", "Manager")';
+                }
+            }
+        }
+    }();
+
+
+       $(document).ready(app.init);
+    </script>
+}

@@ -1,0 +1,15 @@
+C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\win7-x64\hostpolicy.dll
+C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\win7-x64\hostfxr.dll
+C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.exe
+C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.deps.json
+C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.runtimeconfig.json
+C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.runtimeconfig.dev.json
+C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.dll
+C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.pdb
+C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\win7-x64\AgriSystemCore_Service.dll
+C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\win7-x64\AgriSystemCore_Service.pdb
+C:\Project\AgriSystemCore\AgriSystemCore\obj\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.csproj.CoreCompileInputs.cache
+C:\Project\AgriSystemCore\AgriSystemCore\obj\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.AssemblyInfoInputs.cache
+C:\Project\AgriSystemCore\AgriSystemCore\obj\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.AssemblyInfo.cs
+C:\Project\AgriSystemCore\AgriSystemCore\obj\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.dll
+C:\Project\AgriSystemCore\AgriSystemCore\obj\Debug\netcoreapp2.0\win7-x64\AgriSystemCore.pdb

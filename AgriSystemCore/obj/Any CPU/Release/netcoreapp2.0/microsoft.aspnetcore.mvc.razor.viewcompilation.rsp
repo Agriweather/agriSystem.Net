@@ -1,0 +1,24 @@
+C:\Project\AgriSystemCore\AgriSystemCore
+--output-path=obj\Any CPU\Release\netcoreapp2.0\
+--application-name=AgriSystemCore
+--content-root=C:\Project\AgriSystemCore\AgriSystemCore
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Assembly\Create.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Assembly\Edit.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Assembly\Index.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Authorization\ChangePassword.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Authorization\Index.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Default\Index.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Endpoint\TestCase.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Manager\Create.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Manager\Edit.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Manager\Index.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\RawData\Create.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\RawData\Index.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\SensorDefinition\Create.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\SensorDefinition\Edit.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\SensorDefinition\Index.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Shared\Error.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Shared\_Layout.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Shared\_ValidationScriptsPartial.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\_ViewImports.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\_ViewStart.cshtml

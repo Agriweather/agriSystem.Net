@@ -1,0 +1,263 @@
+﻿@model AgriSystemCore.Controllers.AssemblyController.EditViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page-Title -->
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">編輯總成</h4>
+        <ol class="breadcrumb">
+            <li>
+                根目錄
+            </li>
+            <li>
+                系統功能
+            </li>
+            <li>
+                總成維護
+            </li>
+            <li class="active">
+                編輯總成
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="card-box">
+            <h4 class="m-t-0 header-title"><b>編輯總成</b></h4>
+            <hr />
+            <form class="form-horizontal" role="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="txtName" class="col-sm-3 control-label">總成名稱</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="txtName" placeholder="總成名稱" value="@Model.Data.Name">
+                                <small>總成名稱不可重覆</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtNote" class="col-sm-3 control-label">總成說明</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="txtNote" placeholder="總成說明" value="@Model.Data.Note">
+                                <small>ex. 放在廁所的那一支、放在田裡右上角的那支…</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+                <hr />
+                <div class="form-group m-b-0">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button id="btnSave" type="button" class="btn btn-default waves-effect waves-light">確定</button>
+                        <button id="btnCancel" type="button" class="btn btn-default waves-effect waves-light">取消</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="col-sm-4">
+        <div class="card-box">
+            <a id="btnSensorDelete" class="pull-right btn btn-default btn-sm waves-effect waves-light" style="margin-left:7px; cursor:pointer;">刪除</a>
+            <a class="pull-right btn btn-default btn-sm waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal" style="cursor:pointer;">新增</a>
+
+            <h4 class="text-dark header-title m-t-0">感測器</h4>
+            <p class="text-muted m-b-30 font-13">
+                請在此編輯此總成所包含的感測器，您可以拖拉來改變順序，如果需要刪除該定義，只要將該定義打勾，再按刪除便可。
+            </p>
+            <p class="text-muted m-b-30 font-13">
+                編輯完後請記得按「存檔」！一旦存檔，本總成所收進的資料便會依此設定解讀。
+            </p>
+            <ul class="sortable-list taskList list-unstyled ui-sortable" id="upcoming"></ul>
+        </div>
+    </div>
+</div>
+
+<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">請在下方選擇要填加的感測器定義</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">感測器定義</label>
+                            <select id="sensorSelector" multiple="multiple" class="form-control">
+                                @foreach (var i in Model.AllSensorDefinition)
+                                {
+                                    <option data-id="@i.Id" data-name="@i.Name" data-note="@i.Note">@i.Note</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">取消</button>
+                <button id="modelSave" type="button" class="btn btn-info waves-effect waves-light">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageBottom{
+    <script src="~/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <script>
+        var app = function () {
+
+            var sortableItem;
+            var model = JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model))');
+
+            function initSortable() {
+
+                if (typeof (sortableItem) == 'undefined') {
+                    sortableItem = $("#upcoming").sortable({
+                        connectWith: ".taskList",
+                        placeholder: 'task-placeholder',
+                        forcePlaceholderSize: true,
+                        update: function (event, ui) {
+                        }
+                    }).disableSelection();
+                }
+                else {
+                    sortableItem.sortable('destroy');
+                    sortableItem.unbind();
+
+                    sortableItem = $("#upcoming").sortable({
+                        connectWith: ".taskList",
+                        placeholder: 'task-placeholder',
+                        forcePlaceholderSize: true,
+                        update: function (event, ui) {
+                        }
+                    }).disableSelection();
+                }
+
+
+            }
+
+            function modelSave() {
+
+                $('#sensorSelector option:selected').each(function (i, e) {
+
+                    var dataObj = $(e).data();
+
+                    $('#upcoming').prepend(sensorSortTemplate(dataObj));
+
+                });
+
+                initSortable();
+            }
+
+            function sensorSortTemplate(data) {
+
+                var template = '';
+                template += '<li class="task-warning">';
+                template += '<div class="checkbox checkbox-custom checkbox-single pull-right">';
+                template += '<input class="chkSensor" value="' + data.id + '" type="checkbox" aria-label="Single checkbox Two">';
+                template += '<label></label>';
+                template += '</div>' + data.note;
+                template += '<div class="m-t-20">';
+                template += '<p class="m-b-0"><span class="font-bold">'+ data.name +'</span> </p>';
+                template += '</div>';
+                template += '</li>';
+
+                return $(template).hide().fadeIn(2000);
+            }
+
+            return {
+                init: function () {
+
+                    $('#btnSave').click(app.save);
+                    $('#btnCancel').click(app.cancel);
+
+                    $('#modelSave').click(function () {
+                        modelSave();
+                        $('#con-close-modal').modal('hide');
+                    });
+
+                    $('#btnSensorDelete').click(app.sensorDelete);
+
+                    $.each(model.Data.Sensors, function (i, e) {
+                        var targetObj = $.grep(model.AllSensorDefinition, function (se, si) {
+                            return se.Id == e;
+                        });
+
+                        if (typeof (targetObj) != 'undefined' && targetObj.length > 0) {
+
+                            var to = targetObj[0];
+                            var sst = {
+                                id:to.Id,
+                                name : to.Name,
+                                note: to.Note,
+                            };
+
+                            $('#upcoming').append(sensorSortTemplate(sst));
+                        }
+                    });
+
+                    initSortable();
+                },
+                save: function () {
+
+                    layout.block();
+
+                    var arrSensor = new Array();
+                    $('.chkSensor').each(function (i, e) {
+                        arrSensor.push($(e).val());
+                    });
+
+                    var obj = {
+                        Id: '@Model.Data.Id',
+                        Name: $('#txtName').val(),
+                        Note: $('#txtNote').val(),
+                        Sensors: arrSensor
+                    };
+
+                    $.ajax({
+                        url: '@Url.Action("Assembly", "Assembly")',
+                        data: JSON.stringify(obj),
+                        type: 'PUT',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            if (data.success == true) {
+                                alert('成功！');
+                                window.location.href = '@Url.Action("Index", "Assembly")';
+                            }
+                            else {
+                                alert('錯誤!(' + data.msg + ')');
+                                layout.unblock();
+                            }
+
+                        }
+                    });
+
+                },
+                sensorDelete: function () {
+                    if (confirm('確定刪除勾選的項目嗎？')) {
+                        $('.chkSensor:checked').each(function (i, e) {
+                            $(e).parents('.task-warning').remove();
+                        });
+                    }
+                },
+                cancel: function () {
+                    if (confirm('確定離開？')) {
+                        window.location.href = '@Url.Action("Index", "Assembly")';
+                    }
+                }
+            }
+        }();
+
+        $(document).ready(app.init);
+    </script>
+
+}
+

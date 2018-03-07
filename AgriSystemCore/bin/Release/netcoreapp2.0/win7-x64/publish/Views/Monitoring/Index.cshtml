@@ -1,0 +1,124 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page-Title -->
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">即時監測<span id="showRefresh" style="display:none;">(資料更新中...)</span></h4>
+        <ol class="breadcrumb">
+            <li>
+                根目錄
+            </li>
+            <li>
+                系統功能
+            </li>
+            <li class="active">
+                即時監測
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            <form class="form-horizontal" role="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="selName" class="col-sm-2 control-label">總成名稱</label>
+                            <div class="col-sm-10">
+                                <select id="selName" class="form-control"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="showArea">
+    
+</div>
+
+
+@section PageBottom{
+
+    <script src="~/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <script>
+        var app = function () {
+
+            function initAssemblySelect() {
+
+                $.ajax({
+                    url: '@Url.Action("GetAllAssembly", "Endpoint")',
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.success == true) {
+                            $.each(data.data, function (i, e) {
+                                $('#selName').append('<option value="' + e.name + '">' + e.name + '</option>');
+                            });
+
+                            showAssemblyData();
+                        }
+                    }
+                });
+
+            }
+
+            function showAssemblyData() {
+
+                $('#showArea').empty();
+
+               $.ajax({
+                   url: '@Url.Action("Monitor", "Endpoint")',
+                   data: { Assembly: $('#selName').val(), limit:1},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.success == true) {
+                            $.each(data.data.sensors, function (i, e) {
+
+                                var template = '';
+                                template += '<div class="col-lg-3 col-sm-6">';
+                                template += '<div class="widget-panel widget-style-2 bg-white">';
+                                template += '<i class="' + e.cssClass + ' text-primary"></i>';
+                                template += '<h2 class="m-0 text-dark counter font-600">' + data.data.value[0].data[i] + '</h2>';
+                                template += '<div class="text-muted m-t-5">' + e.name + '</div>' + data.data.value[0].cd;
+                                template += '</div>';
+                                template += '</div>';
+
+                                $('#showArea').append($(template).hide().fadeIn(500));
+                            });
+                        }
+                    }
+                });
+
+            }
+
+            return {
+                init: function () {
+
+                    initAssemblySelect();
+
+
+                    playId = setInterval(function () {
+
+                        $('#showRefresh').fadeIn(200, function () {
+                            showAssemblyData();
+                            $('#showRefresh').fadeOut(200);
+                        });
+
+                    }, 6000);
+                }
+            }
+        }();
+
+        $(document).ready(app.init);
+    </script>
+
+}

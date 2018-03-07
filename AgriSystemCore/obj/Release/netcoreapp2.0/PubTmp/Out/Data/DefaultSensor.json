@@ -1,0 +1,135 @@
+﻿[
+  {
+    "Name": "溫度-深層",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "溫度-淺層",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "濕度-深層",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "濕度-淺層",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "氣溫(℃)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "相對濕度(%)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "日照強度(流明)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "降水量(mm)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "氣壓(hPa)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "平均風風速(m/s)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "平均風風向(360 degree)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "電壓",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "水位高度(raw)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "照片(base64)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "水溫(℃)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "水位高度 (cm)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "設定水位高度 (cm)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "電導度-淺層",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "電導度-深層",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "日照強度(瓦)",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "紫外線指數",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  },
+  {
+    "Name": "太陽幅射",
+    "Regex": "",
+    "Note": "",
+    "IsDefaultDefinition": true
+  }
+
+]

@@ -1,0 +1,9 @@
+C:\Project\AgriSystemCore\AgriSystemCore_Service\AgriSystemCore_Service\bin\Debug\netcoreapp2.0\AgriSystemCore_Service.deps.json
+C:\Project\AgriSystemCore\AgriSystemCore_Service\AgriSystemCore_Service\bin\Debug\netcoreapp2.0\AgriSystemCore_Service.dll
+C:\Project\AgriSystemCore\AgriSystemCore_Service\AgriSystemCore_Service\bin\Debug\netcoreapp2.0\AgriSystemCore_Service.pdb
+C:\Project\AgriSystemCore\AgriSystemCore_Service\AgriSystemCore_Service\obj\Debug\netcoreapp2.0\AgriSystemCore_Service.csproj.CoreCompileInputs.cache
+C:\Project\AgriSystemCore\AgriSystemCore_Service\AgriSystemCore_Service\obj\Debug\netcoreapp2.0\AgriSystemCore_Service.AssemblyInfoInputs.cache
+C:\Project\AgriSystemCore\AgriSystemCore_Service\AgriSystemCore_Service\obj\Debug\netcoreapp2.0\AgriSystemCore_Service.AssemblyInfo.cs
+C:\Project\AgriSystemCore\AgriSystemCore_Service\AgriSystemCore_Service\obj\Debug\netcoreapp2.0\AgriSystemCore_Service.dll
+C:\Project\AgriSystemCore\AgriSystemCore_Service\AgriSystemCore_Service\obj\Debug\netcoreapp2.0\AgriSystemCore_Service.pdb
+C:\Project\AgriSystemCore\AgriSystemCore_Service\AgriSystemCore_Service\obj\Debug\netcoreapp2.0\AgriSystemCore_Service.csprojResolveAssemblyReference.cache
