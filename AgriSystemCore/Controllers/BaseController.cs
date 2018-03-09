@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace AgriSystemCore.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         protected IHostingEnvironment _env;
         protected AgriOptions _ao;
