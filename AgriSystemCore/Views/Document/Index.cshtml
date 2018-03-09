@@ -1,0 +1,290 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page-Title -->
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">API 介接文件</h4>
+        <ol class="breadcrumb">
+            <li>
+                根目錄
+            </li>
+            <li>
+                系統文件
+            </li>
+            <li class="active">
+                API 介接文件
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card-box">
+            <h4 class="m-t-0 header-title"><b>傳送資料給系統</b></h4>
+            <hr />
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Url</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" readonly="readonly" value="[Host]/Endpoint">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Type</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" readonly="readonly" value="POST">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Input</label>
+                    <div class="col-sm-10">
+                        <pre>
+[string] Name:總成名稱，必填
+[string] Data[0~無限大]:資料欄位，可<a href="~/Endpoint/TestCase" target="_blank">連結此參考範例</a>
+</pre>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Output</label>
+                    <div class="col-sm-10">
+                        <pre>
+public class result
+{
+    public bool success { get; set; }
+}
+</pre>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card-box">
+            <h4 class="m-t-0 header-title"><b>取得所有總成</b></h4>
+            <hr />
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Url</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" readonly="readonly" value="[Host]/Endpoint/GetAllAssembly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Type</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" readonly="readonly" value="POST">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Input</label>
+                    <div class="col-sm-10">
+                        <pre>N/A</pre>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Output</label>
+                    <div class="col-sm-10">
+                        <pre>
+public class result
+{
+    public bool success { get; set; }
+    public Assembly data  { get; set; }
+}
+
+public class Assembly
+{
+    //--id
+    public int Id { get; set; }
+    //-- 總成(Assembly)名稱
+    public string Name { get; set; }
+    //-- 總成的備註
+    public string Note { get; set; }
+    //-- 總成所包含的 Sensor
+    public List&lt;int&gt; Sensors { get; set; }
+}
+</pre>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card-box">
+            <h4 class="m-t-0 header-title"><b>取得歷史資料</b></h4>
+            <hr />
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Url</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" readonly="readonly" value="[Host]/Endpoint/History">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Type</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" readonly="readonly" value="POST">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Input</label>
+                    <div class="col-sm-10">
+                        <pre>
+[string] assembly:總成名稱，必填
+[DateTime] date:起始時間，必填格式為 yyyy-MM-dd HH:mm:ss ex.2017-01-20 13:26:11，也可以只給日期而不給時間
+[int] day:從起始時間開始算取得幾天的資料，非必填，預設為1天
+[int] frequency:取樣頻率，非必填，預設為3600
+</pre>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Output</label>
+                    <div class="col-sm-10">
+                        <pre>
+public class result
+{
+    public bool success { get; set; }
+    public EndpointDataitem data  { get; set; }
+}
+
+public class EndpointDataitem
+{
+    //--assembly id
+    public int Id { get; set; }
+    //-- assembly name
+    public string Name { get; set; }
+    //--assembly Note
+    public string Note { get; set; }
+    //--會用到的感測器定義，順序與下方的 RawData.Data 一致
+    public List&lt;SensorDefinition&gt; Sensors { get; set; }
+    //--資料庫內的資料
+    public List&lt;RawData&gt; Value { get; set; }
+}
+
+public class SensorDefinition
+{
+    //--定義的 Id
+    public int Id { get; set; }
+    //-- 定義名稱，ex.深層溼度、空氣溫度、電壓…
+    public string Name { get; set; }
+    //-- 正則式，可空白，若空白就是不驗證
+    public string Regex { get; set; }
+    //-- 使用者自行備註
+    public string Note { get; set; }
+    //-- 後台使用的 icon
+    public string CssClass { get; set; }
+    //-- 是否為系統內建的數值
+    public bool IsDefaultDefinition { get; set; }
+}
+
+public class RawData
+{
+    //-- 流水號，自動產生
+    public long Id { get; set; }
+    //-- 總成名稱
+    public string Name { get; set; }
+    //-- 資料收集時間(Server Time)
+    public DateTime CreateDatetime { get; set; }
+    //-- CreateDatetime format 成 yyyy-MM-dd HH:mm:ss
+    public string CD { get; set; }
+    //-- 收進的資料，順序與 EndpointDataitem.Sensors 一致
+    public List&lt;string&gt; Data { get; set; }
+}
+</pre>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card-box">
+            <h4 class="m-t-0 header-title"><b>取得即時資料</b></h4>
+            <hr />
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Url</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" readonly="readonly" value="[Host]/Endpoint/Monitor">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Type</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" readonly="readonly" value="POST">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Input</label>
+                    <div class="col-sm-10">
+                        <pre>
+[string] assembly:總成名稱，必填
+[int] limit:取得最新的幾筆？非必填，預設為10筆資料
+</pre>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Output</label>
+                    <div class="col-sm-10">
+                        <pre>
+public class result
+{
+    public bool success { get; set; }
+    public EndpointDataitem data  { get; set; }
+}
+
+public class EndpointDataitem
+{
+    //--assembly id
+    public int Id { get; set; }
+    //-- assembly name
+    public string Name { get; set; }
+    //--assembly Note
+    public string Note { get; set; }
+    //--會用到的感測器定義，順序與下方的 RawData.Data 一致
+    public List&lt;SensorDefinition&gt; Sensors { get; set; }
+    //--資料庫內的資料
+    public List&lt;RawData&gt; Value { get; set; }
+}
+
+public class SensorDefinition
+{
+    //--定義的 Id
+    public int Id { get; set; }
+    //-- 定義名稱，ex.深層溼度、空氣溫度、電壓…
+    public string Name { get; set; }
+    //-- 正則式，可空白，若空白就是不驗證
+    public string Regex { get; set; }
+    //-- 使用者自行備註
+    public string Note { get; set; }
+    //-- 後台使用的 icon
+    public string CssClass { get; set; }
+    //-- 是否為系統內建的數值
+    public bool IsDefaultDefinition { get; set; }
+}
+
+public class RawData
+{
+    //-- 流水號，自動產生
+    public long Id { get; set; }
+    //-- 總成名稱
+    public string Name { get; set; }
+    //-- 資料收集時間(Server Time)
+    public DateTime CreateDatetime { get; set; }
+    //-- CreateDatetime format 成 yyyy-MM-dd HH:mm:ss
+    public string CD { get; set; }
+    //-- 收進的資料，順序與 EndpointDataitem.Sensors 一致
+    public List&lt;string&gt; Data { get; set; }
+}
+</pre>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
