@@ -99,6 +99,11 @@ namespace AgriSystemCore
                 options.AddPolicy("HistoryPolicy", policy => policy.Requirements.Add(new RoleRequirement(new List<string>() { "History" })));
             });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("DocumentPolicy", policy => policy.Requirements.Add(new RoleRequirement(new List<string>() { "Document" })));
+            });
+
             services.AddSingleton<IAuthorizationHandler, RoleHandler>();
         }
 

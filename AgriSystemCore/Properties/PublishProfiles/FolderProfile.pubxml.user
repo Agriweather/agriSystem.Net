@@ -6,6 +6,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Project\AgriSystemCore\AgriSystemCore\bin\Release\PublishOutput</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\VM\Desktop\temp\WebSite</_PublishTargetUrl>
   </PropertyGroup>
 </Project>

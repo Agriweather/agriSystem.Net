@@ -37,13 +37,13 @@
       },
       {
         "Id": "B5",
-        "Name": "即時監測圖表",
+        "Name": "即時監測",
         "Role": "Monitoring",
         "Uri": "~/Monitoring/Index"
       },
       {
         "Id": "B6",
-        "Name": "歷史資料圖表",
+        "Name": "歷史資料",
         "Role": "History",
         "Uri": "~/History/Index"
       }

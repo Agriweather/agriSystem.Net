@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgriSystemCore.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "DocumentPolicy")]
     public class DocumentController : Controller
     {
         public IActionResult Index()

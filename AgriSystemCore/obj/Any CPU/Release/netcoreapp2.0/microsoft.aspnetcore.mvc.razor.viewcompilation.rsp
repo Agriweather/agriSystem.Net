@@ -8,10 +8,13 @@ C:\Project\AgriSystemCore\AgriSystemCore
 --file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Authorization\ChangePassword.cshtml
 --file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Authorization\Index.cshtml
 --file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Default\Index.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Document\Index.cshtml
 --file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Endpoint\TestCase.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\History\Index.cshtml
 --file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Manager\Create.cshtml
 --file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Manager\Edit.cshtml
 --file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Manager\Index.cshtml
+--file=C:\Project\AgriSystemCore\AgriSystemCore\Views\Monitoring\Index.cshtml
 --file=C:\Project\AgriSystemCore\AgriSystemCore\Views\RawData\Create.cshtml
 --file=C:\Project\AgriSystemCore\AgriSystemCore\Views\RawData\Index.cshtml
 --file=C:\Project\AgriSystemCore\AgriSystemCore\Views\SensorDefinition\Create.cshtml
