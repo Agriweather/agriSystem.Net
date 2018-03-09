@@ -140,7 +140,7 @@ namespace AgriSystemCore_Service.Service
                 {
                     if (i.CreateDatetime >= pointer)
                     {
-                        pointer.AddSeconds(frequency);
+                        pointer = i.CreateDatetime.AddSeconds(frequency);
 
                         result.Value.Add(i);
                     }
