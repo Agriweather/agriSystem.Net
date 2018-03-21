@@ -3653,9 +3653,6 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
       "projectUniqueName": "C:\\Project\\AgriSystemCore\\AgriSystemCore_Service\\AgriSystemCore_Service\\AgriSystemCore_Service.csproj",
       "projectName": "AgriSystemCore_Service",

@@ -34,6 +34,8 @@ namespace AgriSystemCore_Service.Domain
     public class SearchRawDataParameter : SearchParameters
     {
         public string Name { get; set; }
+        public DateTime? Start { get; set; }
+        public DateTime? End { get; set; }
     }
 
     public class SearchRawDataResult : SearchResult

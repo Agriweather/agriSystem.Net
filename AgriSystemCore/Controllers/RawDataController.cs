@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AgriSystemCore.Models;
 using AgriSystemCore_Service.Domain;
@@ -32,6 +33,8 @@ namespace AgriSystemCore.Controllers
         public class SearchRequest : JDataTableRequest
         {
             public string Name { get; set; }
+            public DateTime? StartDate { get; set; }
+            public DateTime? EndDate { get; set; }
         }
 
         public class SearchTableView
@@ -54,7 +57,7 @@ namespace AgriSystemCore.Controllers
                         SortColumn = "Id"; //--其實是按鈕
                         break;
                     case 1:
-                        SortColumn = "Id"; 
+                        SortColumn = "Id";
                         break;
                     case 2:
                         SortColumn = "Name";
@@ -76,7 +79,9 @@ namespace AgriSystemCore.Controllers
                     PageSize = request.length,
                     Order = request.order.First().dir.ToLower() == "asc" ? SearchParameters.OrderBehavior.ASC : SearchParameters.OrderBehavior.DESC,
                     SortColumn = SortColumn,
-                    Name = request.Name
+                    Name = request.Name,
+                    Start = request.StartDate,
+                    End = request.EndDate
                 };
 
                 SearchRawDataResult result = service.Search(param);
@@ -120,7 +125,6 @@ namespace AgriSystemCore.Controllers
             }
         }
 
-
         #endregion
 
         #region create
@@ -148,6 +152,49 @@ namespace AgriSystemCore.Controllers
             {
                 return Json(new { success = false, msg = ex.Message });
             }
+        }
+
+        #endregion
+
+        #region export
+
+        [HttpPost]
+        public FileResult Export(SearchRequest request)
+        {
+            var contentType = "text/csv";
+
+            var content = "";
+
+            using (var service = new RawDataService(this._dbPath))
+            {
+                SearchRawDataParameter param = new SearchRawDataParameter()
+                {
+                    Name = request.Name,
+                    Start = request.StartDate,
+                    End = request.EndDate
+                };
+
+                List<RawData> data = service.ExportData(param);
+
+                foreach (var i in data)
+                {
+                    List<string> t = new List<string>();
+                    t.Add(i.CreateDatetime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                    foreach (var d in i.Data)
+                    {
+                        t.Add(d.Replace("\"", "\"\""));
+                    }
+
+                    content += "\"" + string.Join("\",\"", t.ToArray()) + "\"\r\n";
+                }
+
+            }
+
+            var bytes = Encoding.UTF8.GetBytes(content);
+            var result = new FileContentResult(bytes, contentType);
+            result.FileDownloadName = "export.csv";
+            return result;
         }
 
         #endregion

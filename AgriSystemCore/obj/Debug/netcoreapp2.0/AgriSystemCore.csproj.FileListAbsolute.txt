@@ -11,3 +11,4 @@ C:\Project\AgriSystemCore\AgriSystemCore\obj\Debug\netcoreapp2.0\AgriSystemCore.
 C:\Project\AgriSystemCore\AgriSystemCore\obj\Debug\netcoreapp2.0\AgriSystemCore.pdb
 C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\AgriSystemCore_Service.dll
 C:\Project\AgriSystemCore\AgriSystemCore\bin\Debug\netcoreapp2.0\AgriSystemCore_Service.pdb
+C:\Project\AgriSystemCore\AgriSystemCore\obj\Debug\netcoreapp2.0\AgriSystemCore.csproj.CopyComplete

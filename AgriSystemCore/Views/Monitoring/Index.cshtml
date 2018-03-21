@@ -72,8 +72,6 @@
 
             function showAssemblyData() {
 
-                $('#showArea').empty();
-
                $.ajax({
                    url: '@Url.Action("Monitor", "Endpoint")',
                    data: { Assembly: $('#selName').val(), limit:1},
@@ -81,6 +79,9 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data.success == true) {
+
+                            $('#showArea').empty();
+
                             $.each(data.data.sensors, function (i, e) {
 
                                 var template = '';
@@ -113,7 +114,7 @@
                             $('#showRefresh').fadeOut(200);
                         });
 
-                    }, 6000);
+                    }, 20000);
                 }
             }
         }();

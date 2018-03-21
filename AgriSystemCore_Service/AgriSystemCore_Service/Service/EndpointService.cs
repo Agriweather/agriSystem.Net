@@ -134,7 +134,7 @@ namespace AgriSystemCore_Service.Service
                 DateTime end = start.AddDays(day).AddSeconds(-1);
 
                 DateTime pointer = start;
-                var rawData = colRawData.Find(x => x.Name == assembly && x.CreateDatetime >= start && x.CreateDatetime <= end).OrderBy(x => x.Id);
+                var rawData = colRawData.Find(x => x.Name == assembly && check(x, result.Sensors)  && x.CreateDatetime >= start && x.CreateDatetime <= end).OrderBy(x => x.Id);
 
                 foreach (var i in rawData)
                 {
