@@ -1,1 +1,3 @@
 *.js linguist-language=ASP.Net
+*.html linguist-language=ASP.Net
+*.cshtml linguist-language=ASP.Net
