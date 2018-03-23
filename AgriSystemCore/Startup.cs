@@ -104,6 +104,11 @@ namespace AgriSystemCore
                 options.AddPolicy("DocumentPolicy", policy => policy.Requirements.Add(new RoleRequirement(new List<string>() { "Document" })));
             });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("DashboardPolicy", policy => policy.Requirements.Add(new RoleRequirement(new List<string>() { "Dashboard" })));
+            });
+
             services.AddSingleton<IAuthorizationHandler, RoleHandler>();
         }
 

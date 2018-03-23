@@ -46,6 +46,12 @@
         "Name": "歷史資料",
         "Role": "History",
         "Uri": "~/History/Index"
+      },
+      {
+        "Id": "B7",
+        "Name": "Dashboard",
+        "Role": "Dashboard",
+        "Uri": "~/Dashboard/Index"
       }
     ]
   },
