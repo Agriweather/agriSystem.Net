@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -38,7 +39,7 @@ namespace AgriSystemCore.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> Login(string name, string password)
+        public async Task<JsonResult> Login(string name, string password, string returnUrl)
         {
             string msg = "";
 
@@ -74,7 +75,14 @@ namespace AgriSystemCore.Controllers
 
                         HttpContext.Session.Set<Manager>("ManagerInfo", manager);
 
-                        return Json(new { success = true, url = Url.Action("Index", "Default") });
+                        string url = Url.Action("Index", "Default");
+
+                        if (!string.IsNullOrWhiteSpace(returnUrl))
+                        {
+                            url = WebUtility.UrlDecode(returnUrl);
+                        }
+
+                        return Json(new { success = true, url });
                     }
                     else
                     {
