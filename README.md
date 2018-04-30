@@ -33,7 +33,7 @@ ASP.Net 一直是我最熟的開發語言，在此專案開發之初，為了搶
 
 Windows
 
-1. 下戴 Source code 後先進行編譯，或是下戴我們已編譯好的檔案([下戴](https://github.com/Agriweather/agriSystem.Net/blob/master/MDItem/AgriSystemCore.zip))
+1. 下戴 Source code 後先進行編譯，或是下戴我們已編譯好的檔案([下戴](https://github.com/Agriweather/agriSystem.Net/raw/master/MDItem/AgriSystemCore.zip))
 2. 點擊 AgriSystemCore.exe
 3. 打開瀏覽器，輸入 "localhost" 並按 Enter 進入系統，預設的帳號密碼是 Admin/admin 請在登入後先修改成自己習慣的帳密。
 
